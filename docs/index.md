@@ -22,17 +22,16 @@ We have downloaded ~25,000 publications that provide not only a pdf file, but al
 
 
 
-​    arxiv/
-
-​       1711.11486v1/
-
-​            abstract.tex
-
-​            keywords.tex
-
-​            1.png
-
-​            1.tex
-
-
+```
+arxiv/
+  1711.11486v1/
+    abstract.tex
+    keywords.tex
+    1.png
+    1.tex
+    ...
+    n.png
+    n.tex
+  ...
+```
 
