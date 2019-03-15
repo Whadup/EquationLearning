@@ -15,3 +15,24 @@ We want to provide a search-engine that allows users to find equations related t
 Training such a machine learning system usually requires the use of logged user interactions with the search engine: When a user had the following query, the system offered a set of possible results and the user interacted with a number of them. However, we do not have a running system; we suffer from the well-known cold-start problem. All we have is a collection of documents, each document containing a number of equations. We propose a number of different training tasks for training a model without logged user interactions.
 
 We assemble an evaluation data set, where we hand-label a small number of equations and assign them to groups based on domain knowledge. A successful system should judge the similarities within those groups as high and between groups as low. Note that these gold-labels are not used during training.
+
+## The Dataset
+
+We have downloaded ~25,000 publications that provide not only a pdf file, but also the LaTex sources used to generate the pdf. From these sources we extracted maths environments. Of these snippets, were able to compile more than 660,000 equations; the major cause for failed compilation being more compicated user-defined LaTex macros.
+
+
+
+​    arxiv/
+
+​       1711.11486v1/
+
+​            abstract.tex
+
+​            keywords.tex
+
+​            1.png
+
+​            1.tex
+
+
+
