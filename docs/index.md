@@ -18,7 +18,7 @@ We assemble an evaluation data set, where we hand-label a small number of equati
 
 ## The Dataset
 
-We have downloaded ~25,000 publications that provide not only a pdf file, but also the LaTex sources used to generate the pdf. From these sources we extracted maths environments. Of these snippets, were able to compile more than 660,000 equations; the major cause for failed compilation being more compicated user-defined LaTex macros.
+We have downloaded ~25,000 publications that provide not only a pdf file, but also the LaTex sources used to generate the pdf. From these sources we extracted maths environments. Of these snippets, were able to compile more than 660,000 equations; the major cause for failed compilation being more compicated user-defined LaTex macros or the use of non-standard LaTex packages.
 
 
 
