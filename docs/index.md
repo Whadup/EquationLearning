@@ -35,4 +35,4 @@ arxiv/
   ...
 ```
 
-The data can be accessed here: [Download](mailto:lukas.pfahler@udo.edu?Subject=arXiv-Equations)
+The data can be accessed here: [Download](mailto:lukas.pfahler@udo.edu?Subject=arXiv-Equations&body=Hi%20Lukas%2C%0Acan%20you%20please%20send%20me%20a%20Link%20to%20the%20arXiv-Equation%20dataset%3F%0ABest%2C%0Axyz)
