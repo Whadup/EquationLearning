@@ -24,6 +24,8 @@ The images we create are $531\times106$ pixels in size, however for more efficie
 
 ![example](example.png "Example equation as bitmap graphic, the orange box marks the center rectangle used for learning.")
 
+The data folder contains one subfolder per paper; the structure is as follows:
+
 ```
 arxiv/
   1711.11486v1/
