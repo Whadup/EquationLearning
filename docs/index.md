@@ -20,7 +20,9 @@ We assemble an evaluation data set, where we hand-label a small number of equati
 
 We have downloaded ~25,000 publications that provide not only a pdf file, but also the LaTex sources used to generate the pdf. From these sources we extracted maths environments. Of these snippets, were able to compile more than 600,000 equations; the major cause for failed compilation being more compicated user-defined LaTex macros or the use of non-standard LaTex packages.
 
+The images we create are $531\times106$ pixels in size, however for more efficient learning we only use the center rectangle of size $333\times32$ pixels for training. This decrease in height does not affect single-line equations, the decrease in width does not affect equations that fit into a single column in a two-column layout, longer equations will miss beginning and end. See the image below for an example bitmap with highlighted center rectanlge.
 
+![example]({{ site.url }}/example.png "Example equation as bitmap graphic, the orange box marks the center rectangle used for learning.")
 
 ```
 arxiv/
@@ -35,23 +37,9 @@ arxiv/
   ...
 ```
 
-## The Models
-
-We evaluate a number of different models, trained on different supervised tasks.
-
-__Baseline__: We apply a TFiDF vector space commonly used for information retrieval on the source LaTex equations. We tokenize the LaTex at whitespace, backspace and curly braces and obtain sparse, high-dimensional vectors. This is a non-parametric model that does not need training, but merely pre-processing.
-
-We compare the baseline to several models based on convolutional neural networks (CNN). They all share the same CNN encoder, that takes an image input (333x32 pixels) and transforms it into a 64-dimensional dense vector. We judge the similarity of two equations by measuring the similarity of their respective embeddings; either by Euclidean distance or by dot-product.  By using a common structure, we are able to apply transfer-learning between the different supervised tasks. This base encoder is structured as follows:
-
-Build on top of the encoder, we propose the following classification tasks:
-
-__Latex-Prediction:__ In order to learn the basic building blocks of formulas, we use expressions in the Latex-source as labels. The task is to predict which expressions where used to render the formula given only the image.
-
-__Keyword-Prediction:__ We extract keywords from the abstracts of the arXiv-publications. The task is to predict the keywords given the image of the equation.
-
-Additionally, we propose the following architecture to tackle the last task: Siamese Network, designed for learning similarities.
-
-__Same-Paper-Prediction:__ Given two images of equations, predict if they are taken from the same arXiv-publication.
 
 
+The data can be accessed here: [Mail](mailto:lukas.pfahler@udo.edu?Subject=arXiv-Equations&body=Hi%20Lukas%2C%0Acan%20you%20please%20send%20me%20a%20Link%20to%20the%20arXiv-Equation%20dataset%3F%0ABest%2C%0Axyz)
+
+_We are still working on permantently hosting the data, in the meantime I am happy to share access to the data via e-Mail. If you are a reviewer concerned about maintaining your anonymity, please note that you can find a temporary link to access the data in the supplementary material._
 
