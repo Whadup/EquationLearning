@@ -20,7 +20,7 @@ We assemble an evaluation data set, where we hand-label a small number of equati
 
 We have downloaded ~25,000 publications that provide not only a pdf file, but also the LaTex sources used to generate the pdf. From these sources we extracted maths environments. Of these snippets, were able to compile more than 600,000 equations; the major cause for failed compilation being more compicated user-defined LaTex macros or the use of non-standard LaTex packages.
 
-The images we create are $531\times106$ pixels in size, however for more efficient learning we only use the center rectangle of size $333\times32$ pixels for training. This decrease in height does not affect single-line equations, the decrease in width does not affect equations that fit into a single column in a two-column layout, longer equations will miss beginning and end. See the image below for an example bitmap with highlighted center rectanlge.
+The images we create are 531x106 pixels in size, however for more efficient learning we only use the center rectangle of size 333x32 pixels for training. This decrease in height does not affect single-line equations, the decrease in width does not affect equations that fit into a single column in a two-column layout, longer equations will miss beginning and end. See the image below for an example bitmap with highlighted center rectanlge.
 
 ![example](example.png "Example equation as bitmap graphic, the orange box marks the center rectangle used for learning.")
 
