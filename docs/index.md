@@ -27,7 +27,7 @@ The images we create are 531x106 pixels in size, however for more efficient lear
 The data folder contains one subfolder per paper; the structure is as follows:
 
 ```
-arxiv/
+weak_data_train/
   1711.11486v1/
     abstract.txt
     keywords.txt
@@ -37,6 +37,8 @@ arxiv/
     n.png
     n.tex
   ...
+weak_data_test/
+eval2/
 ```
 
 
