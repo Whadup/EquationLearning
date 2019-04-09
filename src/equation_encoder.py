@@ -26,7 +26,7 @@ class NetSmall(nn.Module):
 
 	def __init__(self, with_dot_product=False):
 		# constant initializing
-		self.checkpoint_string = "si_baer_small_weights_checkpoint{}.pt"
+		self.checkpoint_string = "equation_encoder_small_weights_checkpoint{}.pt"
 		self.with_dot_product = with_dot_product
 		self.save_path = "si_bear_weights.pt"
 		
@@ -147,7 +147,7 @@ class NetLarge(NetSmall):
 
 
 		super(NetLarge, self).__init__(with_dot_product=with_dot_product)
-		self.checkpoint_string = "si_baer_large_weights_checkpoint{}.pt"
+		self.checkpoint_string = "equation_encoder_large_weights_checkpoint{}.pt"
 		self.with_dot_product = with_dot_product
 		self.save_path = "si_bear_large_weights.pt"
 		self.euclid = torch.nn.PairwiseDistance(p=2)

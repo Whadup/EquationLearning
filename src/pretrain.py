@@ -9,7 +9,7 @@ import torch.nn
 import numpy as np
 import argparse
 from formula_data import SingleData
-from si_baer import NetSmall, NetLarge
+from equation_encoder import NetSmall, NetLarge
 
 def convert_to_la(img):
 	return img.convert(mode='LA')

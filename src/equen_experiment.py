@@ -3,11 +3,11 @@ sys.path.append('libs/similarity_learning')
 
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
-import si_baer
+import equation_encoder
 
-ex = Experiment("si_baer")
+ex = Experiment("equation_encoder")
 
-ex.observers.append(FileStorageObserver.create('si_bear_runs'))
+ex.observers.append(FileStorageObserver.create('equen_runs'))
 
 
 @ex.config
@@ -26,7 +26,7 @@ def train(batch_size, learning_rate, epochs, with_dot_product, dataset,
           architecture, pretrained_weights, triples):
     import gitstatus
     ex.info["gitstatus"] = gitstatus.get_repository_status()
-    si_baer.train(batch_size=batch_size, learning_rate=learning_rate,
+    equation_encoder.train(batch_size=batch_size, learning_rate=learning_rate,
                   epochs=epochs, with_dot_product=with_dot_product,
                   dataset=dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights, triples=triples)
 

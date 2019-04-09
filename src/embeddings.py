@@ -2,7 +2,7 @@ from sacred import Experiment
 from sacred.observers import FileStorageObserver
 import formula_data
 import numpy as np
-import si_baer
+import equation_encoder
 import torch
 
 ex = Experiment("Embeddings")
@@ -102,11 +102,11 @@ def eval(pretrained_weights, architecture):
 	import gitstatus
 	ex.info["gitstatus"] = gitstatus.get_repository_status()
 	if architecture == "large":
-		net = si_baer.NetLarge(with_dot_product=True)
+		net = equation_encoder.NetLarge(with_dot_product=True)
 		net.load_state_dict_from_path(pretrained_weights)
 		net.use_batch_norm = False
 	elif architecture == "small":
-		net = si_baer.NetSmall(with_dot_product=True)
+		net = equation_encoder.NetSmall(with_dot_product=True)
 		net.load_state_dict_from_path(pretrained_weights)
 
 	dataset_eval = formula_data.SingleData(name="weak_eval2",is_processed=True)
