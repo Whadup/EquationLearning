@@ -1,6 +1,3 @@
-import sys
-sys.path.append('libs/similarity_learning')
-
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
 import equation_encoder

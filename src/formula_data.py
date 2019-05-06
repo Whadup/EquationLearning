@@ -3,13 +3,12 @@ from tqdm import tqdm
 import argparse
 import img_trans
 import numpy as np
-import os
 import random
-import shutil
 import torch
 import torch.nn
 import torchvision
 import torchvision.transforms as transforms
+
 
 class TripleData(torch.utils.data.Dataset):
     """ This class is a torch dataset, which gives a pair of real arxiv formulas.
@@ -43,7 +42,7 @@ class TripleData(torch.utils.data.Dataset):
             # Each array stores the indices of all places, where you can find a specific class in the train data
             digit_indices = \
                 [np.where(labels == i)[0]
-                 for i in range(int(self.dataset.min_class().item()), 1+int(self.dataset.max_class().item()))]
+                 for i in range(int(self.dataset.min_class().item()), 1 + int(self.dataset.max_class().item()))]
             self.digit_indices = digit_indices
             self.num_classes = len(digit_indices)
             # self.index_label_tensor = self.create_pairs(digit_indices)
@@ -58,11 +57,11 @@ class TripleData(torch.utils.data.Dataset):
         d = int(self.labels[x])
         # print(x,d,len(self.digit_indices))
         n = len(self.digit_indices[d])
-        if n<2:
+        if n < 2:
             x2 = x
         else:
             inc = random.randrange(0, n)
-            while self.digit_indices[d][inc]==x:
+            while self.digit_indices[d][inc] == x:
                 inc = random.randrange(0, n)
             x2 = self.digit_indices[d][inc]
         # rejection sampling to sample from all other example classes uniformly
@@ -72,6 +71,7 @@ class TripleData(torch.utils.data.Dataset):
             x3 = random.randrange(0, len(self))
             d3 = int(self.labels[x3])
         return self.dataset[x][0], self.dataset[x2][0], self.dataset[x3][0]
+
 
 class PairData(torch.utils.data.Dataset):
     """ This class is a torch dataset, which gives a pair of real arxiv formulas.
@@ -90,7 +90,7 @@ class PairData(torch.utils.data.Dataset):
         self.dataset = SingleData(name, root, is_processed=is_processed)
 
         # otherwise we have to create a new dataset with pairs
-            # Extract labels and data from the trainset
+        # Extract labels and data from the trainset
         labels = [self.dataset[i][1] for i in range(len(self.dataset))]
         labels = np.array(labels)
         self.labels = labels
@@ -99,7 +99,7 @@ class PairData(torch.utils.data.Dataset):
         # Each array stores the indices of all places, where you can find a specific class in the train data
         digit_indices = \
             [np.where(labels == i)[0]
-             for i in range(int(self.dataset.min_class().item()), 1+int(self.dataset.max_class().item()))]
+             for i in range(int(self.dataset.min_class().item()), 1 + int(self.dataset.max_class().item()))]
         print("min class", self.dataset.min_class())
         self.digit_indices = digit_indices
         self.num_classes = len(digit_indices)
@@ -109,18 +109,18 @@ class PairData(torch.utils.data.Dataset):
 
     def __getitem__(self, index):
 
-        sim = np.random.choice(2,1,p=(0.5,0.5))
+        sim = np.random.choice(2, 1, p=(0.5, 0.5))
         x = index
         # print(index,x,sim)
         d = int(self.labels[x])
         # print(x,d,len(self.digit_indices))
         n = len(self.digit_indices[d])
-        if sim==0:
-            if n<2:
-                #print("shit",x)
+        if sim == 0:
+            if n < 2:
+                # print("shit",x)
                 return self.dataset[x][0], self.dataset[x][0], self.SIM_LABEL
             inc = random.randrange(0, n)
-            while self.digit_indices[d][inc]==x:
+            while self.digit_indices[d][inc] == x:
                 inc = random.randrange(0, n)
             x2 = self.digit_indices[d][inc]
             # print(x,x2,d,n,self.SIM_LABEL)
@@ -135,6 +135,7 @@ class PairData(torch.utils.data.Dataset):
             # print(x,x2,d,dn,n,len(self.digit_indices[dn]), self.DISSIM_LABEL)
             # print(x,x2,self.DISSIM_LABEL)
             return self.dataset[x][0], self.dataset[x2][0], self.DISSIM_LABEL
+
 
 class SingleData(torch.utils.data.Dataset):
     """  This class is a torch dataset, which gives single real arxiv formulas.
@@ -155,10 +156,11 @@ class SingleData(torch.utils.data.Dataset):
                  img_trans.take_alpha_channel
                  ])
             # Get data from directory structure
-            self.dataset = torchvision.datasets.ImageFolder(root=root, transform=transform, loader=img_loader)
+            self.dataset = torchvision.datasets.ImageFolder(
+                root=root, transform=transform, loader=img_loader)
             self.imgs = torch.ones((len(self.dataset), 1, 32, 333))
             self.labels = torch.ones(len(self.dataset))
-            #print(enumerate(self.dataset))
+            # print(enumerate(self.dataset))
             for i in tqdm(range(len(self.dataset))):
                 img, label = self.dataset[i]
                 self.imgs[i] = img
