@@ -12,7 +12,7 @@ ex.observers.append(FileStorageObserver.create('evaluations'))
 
 @ex.config
 def hyperparamters():
-    architecture = "large"
+    architecture = "small"
     run = None
 
 
