@@ -232,7 +232,7 @@ def print_histogram(dist, remainder="\b", compute_max=None, compute_min=None):
 
 
 def train(batch_size, learning_rate, epochs,
-			with_dot_product, dataset, architecture, ex, pretrained_weights, triples):
+			with_dot_product, dataset, eval_dataset, architecture, ex, pretrained_weights, triples):
 	"""
 	train a model
 	"""
@@ -256,7 +256,7 @@ def train(batch_size, learning_rate, epochs,
 	else:
 		dataset = PairData(name=dataset, with_dot_product=with_dot_product)
 
-	eval_dataset = TripleData(name="weak_test")
+	eval_dataset = TripleData(name=eval_dataset)
 
 	trainloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size,
 						shuffle=False, sampler=torch.utils.data.RandomSampler(dataset))

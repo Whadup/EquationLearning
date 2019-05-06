@@ -12,23 +12,24 @@ ex.observers.append(FileStorageObserver.create('equen_runs'))
 
 @ex.config
 def hyperparamters():
-    batch_size = 128
-    learning_rate = 0.001
-    epochs = 10
+    batch_size = 100
+    learning_rate = 0.00025
+    epochs = 30
     with_dot_product = True
     triples = True
-    dataset = 'weak_train'
+    dataset = 'train'
+    eval_dataset = 'test'
     architecture = 'small'
     pretrained_weights = None
 
 @ex.capture
-def train(batch_size, learning_rate, epochs, with_dot_product, dataset,
+def train(batch_size, learning_rate, epochs, with_dot_product, dataset, eval_dataset,
           architecture, pretrained_weights, triples):
-    import gitstatus
-    ex.info["gitstatus"] = gitstatus.get_repository_status()
+    #import gitstatus
+    #ex.info["gitstatus"] = gitstatus.get_repository_status()
     equation_encoder.train(batch_size=batch_size, learning_rate=learning_rate,
                   epochs=epochs, with_dot_product=with_dot_product,
-                  dataset=dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights, triples=triples)
+                  dataset=dataset, eval_dataset=eval_dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights, triples=triples)
 
 @ex.automain
 def main():
