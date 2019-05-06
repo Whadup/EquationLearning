@@ -187,25 +187,11 @@ def img_loader(path):
     return Image.open(path)
 
 
-
-def str2bool(v):
-    if v.lower() in ('yes', 'true', 't', 'y', '1'):
-        return True
-    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Boolean value expected.')
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Crawl the pngs from arxivs.')
     parser.add_argument('name', metavar='N', type=str,
                         help='containing folder of the arxiv folder')
     parser.add_argument('root', metavar='N', type=str,
                         help='containing folder of the arxiv folder')
-    parser.add_argument('opc', metavar='N', type=str2bool,
-                        help='one_per_class')
-    parser.add_argument('pps', metavar='N', type=int,
-                        help='pairs_per_sample')
     args = parser.parse_args()
     d = SingleData(name=args.name, root=args.root, is_processed=False)
