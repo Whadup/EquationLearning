@@ -1,6 +1,3 @@
-import sys
-sys.path.append('libs/similarity_learning')
-
 from sacred import Experiment
 from sacred.observers import FileStorageObserver
 import pretrain
@@ -23,18 +20,17 @@ def hyperparamters():
     architecture = 'small'
     pretrained_weights = None
 
+
 @ex.capture
 def train(batch_size, learning_rate, momentum, weight_decay, epochs, with_dot_product, dataset,
           architecture, scheduler_patience, pretrained_weights):
-    import gitstatus
-    ex.info["gitstatus"] = gitstatus.get_repository_status()
+    # import gitstatus
+    # ex.info["gitstatus"] = gitstatus.get_repository_status()
     pretrain.train(batch_size=batch_size, learning_rate=learning_rate, momentum=momentum, weight_decay=weight_decay,
-                  epochs=epochs, scheduler_patience=scheduler_patience, with_dot_product=with_dot_product,
-                  dataset=dataset, architecture=architecture, ex=ex, pretrained_weights = pretrained_weights)
+                   epochs=epochs, scheduler_patience=scheduler_patience, with_dot_product=with_dot_product,
+                   dataset=dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights)
+
 
 @ex.automain
 def main():
     train()
-
-
-
