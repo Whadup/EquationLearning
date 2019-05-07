@@ -47,3 +47,8 @@ python evaluation.py with run=path/to/run
 
 ```path/to/run``` should be something like ```equen_runs/x``` with x as the number of the respective training routine.
 
+If you want to evaluate on Hold-Out data instead of the Gold-Label data you should run:
+
+```bash
+python evaluation.py with run=path/to/run dataset=test
+```
