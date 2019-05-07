@@ -22,6 +22,16 @@ To build the evaluation dataset (Hold-Out Data) run:
 python formula_data.py test path/to/weak_data_test
 ```
 
+### Pretraining
+
+In order to pretrain the equation-encoder run this:
+
+```bash
+python3 pretrain_experiment.py with dataset=task data_source=path/to/weak_data_train
+
+```
+```task``` should be either ```abstract``` or ```symbols``` depending on which pretraining task you want to run. 
+
 ### Training
 
 In order to train the equation-encoder run this:

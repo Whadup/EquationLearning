@@ -159,7 +159,7 @@ def img_loader(path):
 
 
 def train(batch_size, learning_rate, momentum, weight_decay, epochs,
-          scheduler_patience, with_dot_product, dataset, architecture, ex, pretrained_weights):
+          scheduler_patience, with_dot_product, dataset, data_source, architecture, ex, pretrained_weights):
     if architecture == 'small':
         net = NetSmall(with_dot_product=with_dot_product)
     elif architecture == 'large':
@@ -174,10 +174,10 @@ def train(batch_size, learning_rate, momentum, weight_decay, epochs,
     print(dataset)
     if dataset == "abstract":
         dataset = PretrainAbstractData(
-            name="train", root="weak_data_train", is_processed=True)
-    elif dataset == "equation":
+            name="train", root=data_source, is_processed=False)
+    elif dataset == "symbols":
         dataset = PretrainEquationData(
-            name="train", root="weak_data_train", is_processed=True)
+            name="train", root=data_source, is_processed=False)
     trainloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False,
                                               sampler=torch.utils.data.RandomSampler(dataset))
 
