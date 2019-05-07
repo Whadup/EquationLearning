@@ -15,22 +15,20 @@ def hyperparamters():
     with_dot_product = True
     triples = True
     dataset = 'train'
-    eval_dataset = 'test'
     architecture = 'small'
     pretrained_weights = None
 
+
 @ex.capture
-def train(batch_size, learning_rate, epochs, with_dot_product, dataset, eval_dataset,
+def train(batch_size, learning_rate, epochs, with_dot_product, dataset,
           architecture, pretrained_weights, triples):
     #import gitstatus
     #ex.info["gitstatus"] = gitstatus.get_repository_status()
     equation_encoder.train(batch_size=batch_size, learning_rate=learning_rate,
-                  epochs=epochs, with_dot_product=with_dot_product,
-                  dataset=dataset, eval_dataset=eval_dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights, triples=triples)
+                           epochs=epochs, with_dot_product=with_dot_product,
+                           dataset=dataset, architecture=architecture, ex=ex, pretrained_weights=pretrained_weights, triples=triples)
+
 
 @ex.automain
 def main():
     train()
-
-
-

@@ -242,7 +242,7 @@ def print_histogram(dist, remainder="\b", compute_max=None, compute_min=None):
 
 
 def train(batch_size, learning_rate, epochs,
-          with_dot_product, dataset, eval_dataset, architecture, ex, pretrained_weights, triples):
+          with_dot_product, dataset, architecture, ex, pretrained_weights, triples):
     """
     train a model
     """
@@ -265,8 +265,6 @@ def train(batch_size, learning_rate, epochs,
         dataset = TripleData(name=dataset)
     else:
         dataset = PairData(name=dataset, with_dot_product=with_dot_product)
-
-    eval_dataset = TripleData(name=eval_dataset)
 
     trainloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size,
                                               shuffle=False, sampler=torch.utils.data.RandomSampler(dataset))
@@ -375,7 +373,6 @@ def train(batch_size, learning_rate, epochs,
         scheduler.step()
         if architecture == "large" and epoch == 0:
             net.kill_batch_norm()
-        # evaluation.eval_loss_triple(net, eval_dataset, with_dot_product)
         num_batches_in_last_interval = len(trainloader) % loss_output_interval
         last_loss = running_loss / num_batches_in_last_interval
         ex.info["loss after epoch {}".format(epoch + 1)] = last_loss
